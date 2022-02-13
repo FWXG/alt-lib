@@ -20,8 +20,34 @@ inline void alt::vector<T>::add_elem(T elem)
 }
 
 template<typename T>
-inline alt::vector<T>::~vector()
+inline size_t alt::vector<T>::length()
+{
+	return this->m_length;
+}
+
+template<typename T>
+bool alt::vector<T>::is_empty()
+{
+	if(m_length) return false;
+	else return true;
+		
+}
+
+template<typename T>
+void alt::vector<T>::clear()
 {
 	delete[] m_pointer;
 	m_pointer = nullptr;
+	m_length = 0;
 }
+
+template<typename T>
+alt::vector<T>::~vector()
+{
+	if(m_pointer){
+		delete[] m_pointer;
+		m_pointer = nullptr;
+	}
+}
+
+

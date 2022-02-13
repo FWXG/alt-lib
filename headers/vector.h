@@ -15,12 +15,19 @@ namespace alt
 		vector() = default;
 		~vector();
 
+		bool is_empty();
+
 		void add_elem(T elem);
+		void clear();
+
+		size_t length();
 
 		T operator[](const int index)
 		{
 			return m_pointer[index];
 		}
+
+
 		
 	};
 
