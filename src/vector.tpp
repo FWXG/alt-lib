@@ -1,7 +1,8 @@
 #include "vector.h"
+//#include <cassert>
 
 template<typename T>
-inline void alt::vector<T>::add_elem(T elem)
+void alt::vector<T>::add_elem(T elem)
 {
 	++this->m_length;
 	if(m_pointer){
@@ -17,6 +18,25 @@ inline void alt::vector<T>::add_elem(T elem)
 		delete[] m_tmp_arr;
 	}
 	m_pointer[m_length - 1] = elem;
+}
+
+template<typename T>
+void alt::vector<T>::del_last()
+{
+	//assert(m_length > 0); // Throw error?
+	--m_length;
+	if(m_pointer){
+		m_tmp_arr = new T[m_length];
+		for(size_t i = 0; i < m_length; ++i)
+			m_tmp_arr[i] = m_pointer[i];
+		delete[] m_pointer;
+	}
+	m_pointer = new T[m_length];
+	if(m_pointer){
+		for(size_t i = 0; i < m_length; ++i)
+			m_pointer[i] = m_tmp_arr[i];
+		delete[] m_tmp_arr;
+	}	
 }
 
 template<typename T>

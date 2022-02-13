@@ -18,6 +18,7 @@ namespace alt
 		bool is_empty();
 
 		void add_elem(T elem);
+		void del_last();
 		void clear();
 
 		size_t length();
