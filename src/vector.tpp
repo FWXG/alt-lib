@@ -71,9 +71,7 @@ void alt::vector<T>::insert(std::size_t pos, T elem)
 
         m_tmp_arr = new T[m_max_size - 1];
         for(int i = 0; i < m_max_size - 1; ++i)
-        {
             m_tmp_arr[i] = m_pointer[i];
-        }
 
         m_pointer[pos] = elem;
 
@@ -83,6 +81,24 @@ void alt::vector<T>::insert(std::size_t pos, T elem)
         }
 
         delete[] m_tmp_arr;
+
+    }
+    catch(int a)
+    {
+        std::cerr << "length error";
+    }
+}
+
+template<typename T>
+void alt::vector<T>::erase(std::size_t pos, T elem)
+{
+    try
+    {
+        if(m_max_size == 0 || pos > m_max_size)
+            throw -1;
+
+        --m_max_size;
+
 
     }
     catch(int a)
