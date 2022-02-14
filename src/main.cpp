@@ -11,14 +11,11 @@ int main()
     for(int i = 0; i < test.length(); ++i)
     {
         test.add_elem(i);
+        std::cout << test[i] << std::endl;
+
     }
 
-    test.insert(2,999);
-
-    for(int i = 0; i < test.length(); ++i)
-    {
-        std::cout << i << " " << test[i] << std::endl;
-    }
+    std::cout << std::endl << test.at(2);
 
     system("pause");
     return 0;

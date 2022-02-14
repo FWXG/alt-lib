@@ -24,13 +24,11 @@ namespace alt
 		void reserve(std::size_t num);
 		void resize(std::size_t num);
 		void insert(std::size_t pos, T elem);
-		void erase(std::size_t pos, T elem); //Not complited
+		void erase(std::size_t pos, T elem);
 		void del_last();
 		void clear();
 
 		std::size_t length() const;
-
-		T at(std::size_t pos) const;
 
 		T& operator[](const int index) const
 		{

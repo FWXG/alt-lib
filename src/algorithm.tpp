@@ -108,13 +108,6 @@ void alt::vector<T>::erase(std::size_t pos, T elem)
 }
 
 template<typename T>
-T alt::vector<T>::at(std::size_t pos) const
-{
-    if(pos == 0) return m_pointer[0];
-    else return m_pointer[pos - 1];
-}
-
-template<typename T>
 inline size_t alt::vector<T>::length() const
 {
 	return m_max_size;
