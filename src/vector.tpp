@@ -35,19 +35,19 @@ void alt::vector<T>::del_last()
 {
     try
     {
-        if(m_index == 0)
+        if(m_max_size == 0)
             throw -1;
 
-        --m_index;
+        m_max_size = --m_index;
         if(m_pointer){
-            m_tmp_arr = new T[m_index];
-            for(size_t i = 0; i < m_index; ++i)
+            m_tmp_arr = new T[m_max_size];
+            for(size_t i = 0; i < m_max_size; ++i)
                 m_tmp_arr[i] = m_pointer[i];
             delete[] m_pointer;
         }
-        m_pointer = new T[m_index];
+        m_pointer = new T[m_max_size];
         if(m_pointer){
-            for(size_t i = 0; i < m_index; ++i)
+            for(size_t i = 0; i < m_max_size; ++i)
                 m_pointer[i] = m_tmp_arr[i];
             delete[] m_tmp_arr;
         }
@@ -57,6 +57,28 @@ void alt::vector<T>::del_last()
         std::cerr << "length error";
     }
 
+}
+
+template<typename T>
+void alt::vector<T>::insert(std::size_t pos, T elem)
+{
+    try
+    {
+        if(m_max_size == 0 || pos > m_max_size)
+            throw -1;
+
+        ++m_max_size;
+
+        m_pointer[pos] = elem;
+
+
+
+
+    }
+    catch(int a)
+    {
+        std::cerr << "length error";
+    }
 }
 
 template<typename T>
@@ -70,6 +92,12 @@ void alt::vector<T>::reserve(std::size_t num)
 {
     m_max_size = num;
     m_pointer = new T[m_max_size];
+}
+
+template<typename T>
+void alt::vector<T>::resize(std::size_t num)
+{
+    m_max_size = num;
 }
 
 template<typename T>

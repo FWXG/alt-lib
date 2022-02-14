@@ -22,6 +22,8 @@ namespace alt
 
 		void add_elem(T elem);
 		void reserve(std::size_t num);
+		void resize(std::size_t num);
+		void insert(std::size_t pos, T elem);
 		void del_last();
 		void clear();
 

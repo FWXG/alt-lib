@@ -6,24 +6,10 @@
 int main()
 {
     alt::vector<int> test;
-    test.reserve(5);
 
-    for(int i = 0; i < test.length(); ++i)
-    {
-        test.add_elem(i);
-    }
+    test.add_elem(1);
 
-
-    for(int i = 0; i < test.length(); ++i)
-    {
-        std::cout << i << " " << test[i] << std::endl;
-    }
-
-    std::cout << "---------------" << std::endl;
-
-    test.add_elem(5);
-    test.add_elem(6);
-    test.add_elem(7);
+    test.insert(1,2);
 
     for(int i = 0; i < test.length(); ++i)
     {
