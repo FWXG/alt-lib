@@ -69,10 +69,20 @@ void alt::vector<T>::insert(std::size_t pos, T elem)
 
         ++m_max_size;
 
+        m_tmp_arr = new T[m_max_size - 1];
+        for(int i = 0; i < m_max_size - 1; ++i)
+        {
+            m_tmp_arr[i] = m_pointer[i];
+        }
+
         m_pointer[pos] = elem;
 
+        for(int i = pos + 1; i < m_max_size; ++i)
+        {
+            m_pointer[i] = m_tmp_arr[i - 1];
+        }
 
-
+        delete[] m_tmp_arr;
 
     }
     catch(int a)
