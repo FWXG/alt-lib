@@ -1,56 +1,83 @@
-#include "vector.h"
-//#include <cassert>
+#include "../headers/vector.h"
+
 
 template<typename T>
 void alt::vector<T>::add_elem(T elem)
 {
-	++this->m_length;
-	if(m_pointer){
-		m_tmp_arr = new T[m_length - 1];
-		for(size_t i = 0; i < m_length - 1; ++i)
-			m_tmp_arr[i] = m_pointer[i];
-		delete[] m_pointer;
-	}
-	m_pointer = new T[m_length];
-	if(m_pointer){
-		for(size_t i = 0; i < m_length - 1; ++i)
-			m_pointer[i] = m_tmp_arr[i];
-		delete[] m_tmp_arr;
-	}
-	m_pointer[m_length - 1] = elem;
+    if(m_index < m_max_size)
+    {
+        m_pointer[m_index] = elem;
+        ++m_index;
+    }
+    else{
+        m_max_size = ++m_index;
+
+        if(m_pointer){
+            m_tmp_arr = new T[m_max_size - 1];
+            for(size_t i = 0; i < m_max_size - 1; ++i)
+                m_tmp_arr[i] = m_pointer[i];
+            delete[] m_pointer;
+        }
+
+        m_pointer = new T[m_max_size];
+
+        if(m_pointer){
+            for(size_t i = 0; i < m_max_size - 1; ++i)
+                m_pointer[i] = m_tmp_arr[i];
+            delete[] m_tmp_arr;
+        }
+        m_pointer[m_index - 1] = elem;
+    }
 }
 
 template<typename T>
 void alt::vector<T>::del_last()
 {
-	//assert(m_length > 0); // Throw error?
-	--m_length;
-	if(m_pointer){
-		m_tmp_arr = new T[m_length];
-		for(size_t i = 0; i < m_length; ++i)
-			m_tmp_arr[i] = m_pointer[i];
-		delete[] m_pointer;
-	}
-	m_pointer = new T[m_length];
-	if(m_pointer){
-		for(size_t i = 0; i < m_length; ++i)
-			m_pointer[i] = m_tmp_arr[i];
-		delete[] m_tmp_arr;
-	}	
+    try
+    {
+        if(m_index == 0)
+            throw -1;
+
+        --m_index;
+        if(m_pointer){
+            m_tmp_arr = new T[m_index];
+            for(size_t i = 0; i < m_index; ++i)
+                m_tmp_arr[i] = m_pointer[i];
+            delete[] m_pointer;
+        }
+        m_pointer = new T[m_index];
+        if(m_pointer){
+            for(size_t i = 0; i < m_index; ++i)
+                m_pointer[i] = m_tmp_arr[i];
+            delete[] m_tmp_arr;
+        }
+    }
+    catch(int a)
+    {
+        std::cerr << "length error";
+    }
+
 }
 
 template<typename T>
-inline size_t alt::vector<T>::length()
+inline size_t alt::vector<T>::length() const
 {
-	return this->m_length;
+	return m_max_size;
 }
 
 template<typename T>
-bool alt::vector<T>::is_empty()
+void alt::vector<T>::reserve(std::size_t num)
 {
-	if(m_length) return false;
+    m_max_size = num;
+    m_pointer = new T[m_max_size];
+}
+
+template<typename T>
+inline bool alt::vector<T>::is_empty() const
+{
+	if(m_index) return false;
 	else return true;
-		
+
 }
 
 template<typename T>
@@ -58,7 +85,7 @@ void alt::vector<T>::clear()
 {
 	delete[] m_pointer;
 	m_pointer = nullptr;
-	m_length = 0;
+	m_index = 0;
 }
 
 template<typename T>

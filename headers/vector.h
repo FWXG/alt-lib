@@ -1,4 +1,6 @@
 #pragma once
+#include <cstdint>
+#include <iostream>
 
 namespace alt
 {
@@ -6,7 +8,8 @@ namespace alt
 	class vector
 	{
 	private:
-		size_t m_length = 0;
+	    std::size_t m_max_size = 0;
+		std::size_t m_index = 0;
 		T* m_pointer = nullptr;
 		T* m_tmp_arr = nullptr;
 
@@ -15,21 +18,22 @@ namespace alt
 		vector() = default;
 		~vector();
 
-		bool is_empty();
+		bool is_empty() const;
 
 		void add_elem(T elem);
+		void reserve(std::size_t num);
 		void del_last();
 		void clear();
 
-		size_t length();
+		std::size_t length() const;
 
-		T operator[](const int index)
+		T& operator[](const int index) const
 		{
 			return m_pointer[index];
 		}
 
 
-		
+
 	};
 
 	#include "..\src\vector.tpp"
