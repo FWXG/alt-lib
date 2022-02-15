@@ -15,7 +15,7 @@ namespace alt
     public:
 
         static void bubble_sort(T* arr, std::size_t len);
-        static void cocktail_sort(T* arr, std::size_t len); // ------
+        static void cocktail_sort(T* arr, std::size_t len);
         static void selection_sort(T* arr, std::size_t len);
         static void insertion_sort(T* arr, std::size_t len);
         static void quick_sort(T* arr, std::size_t len);

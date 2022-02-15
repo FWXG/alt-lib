@@ -14,6 +14,12 @@ add_library(algorithm
     headers/algorithm.h
     )
 
+add_library(list
+    src/main.cpp
+    src/list.tpp
+    headers/list.h
+    )
+
 add_executable(alt src/main.cpp)
-target_link_libraries(alt vector algorithm)
+target_link_libraries(alt vector algorithm list)
 

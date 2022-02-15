@@ -16,6 +16,19 @@ void alt::sort<T>::bubble_sort(T* arr, std::size_t len)
 }
 
 template<typename T>
+void alt::sort<T>::quick_sort(T* arr, std::size_t len)
+{
+    T piv = arr[len - 1];
+    for(std::size_t i = 0; i < len - 1; ++i)
+    {
+
+    }
+
+
+}
+
+
+template<typename T>
 void alt::sort<T>::cocktail_sort(T* arr, std::size_t len)
 {
     bool flag = true;
