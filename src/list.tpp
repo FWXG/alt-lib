@@ -1,15 +1,16 @@
 #include "../headers/list.h"
 
 template<typename T>
-bool alt::list<T>::is_empty()
+inline alt::list<T>::list()
 {
-    return m_first == nullptr;
+    m_size = 0;
+    m_first = nullptr;
 }
 
 template<typename T>
-void alt::list<T>::print()
+bool alt::list<T>::is_empty()
 {
-
+    return m_first == nullptr;
 }
 
 template<typename T>
@@ -31,17 +32,17 @@ void alt::list<T>::push_front(T val)
 template<typename T>
 void alt::list<T>::push_back(T val)
 {
-    node<T> *p_new_val = new node<T>(val);
     if(is_empty())
     {
-       m_first = p_new_val;
-       m_last = p_new_val;
-       return;
+       m_first = new node<T>(val);
     }
     else
     {
-        m_last->m_pnext = p_new_val;
-        m_last = p_new_val;
+        node<T> *current = this->head;
+        while(current->pNext != nullptr)
+        {
+            current = current->pNext;
+        }
     }
 }
 
