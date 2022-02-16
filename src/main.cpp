@@ -1,20 +1,17 @@
 #include "..\headers\vector.h"
 #include "..\headers\algorithm.h"
+#include "..\headers\list.h"
 #include <iostream>
 #include <Windows.h>
 #include <vector>
 
 int main()
 {
+    alt::list<int> l;
+    l.push_back(4);
+    l.push_back(5);
+    l.push_back(7);
 
-    int arr[] {7,1,6,4};
-    alt::sort<int>::cocktail_sort(arr, 4);
-
-
-    for(int i = 0; i < 4; ++i)
-    {
-        std::cout << arr[i] << std::endl;
-    }
 
     system("pause");
     return 0;

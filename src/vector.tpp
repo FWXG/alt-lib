@@ -136,7 +136,7 @@ void alt::vector<T>::resize(std::size_t num)
 template<typename T>
 inline bool alt::vector<T>::is_empty() const
 {
-	if(m_index) return false;
+	if(m_max_size) return false;
 	else return true;
 
 }
