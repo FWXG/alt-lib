@@ -5,34 +5,40 @@
 namespace alt
 {
     template<typename T>
-    class node
-    {
-    public:
-        T m_value;
-        node* m_pnext;
-        node(T val) : m_value(val), m_pnext(nullptr){};
-    };
-
-
-    template<typename T>
     class list
     {
+
      private:
-        node<T>* m_first;
-        node<T>* m_last;
+
+        template<typename U>
+        class node
+        {
+        public:
+            T m_value;
+            node* m_pNext;
+            node(T val = T(),node *m_pNext = nullptr) : m_value(val), m_pNext(m_pNext){};
+        };
+
+        std::size_t m_size;
+        node<T> *m_first;
 
     public:
-        list() : m_first(nullptr), m_last(nullptr){};
 
-        bool is_empty();
+        list();
+        ~list();
 
-        void print();
+        std::size_t length() const;
+
+        bool is_empty() const;
+
         void push_back(T val);
         void push_front(T val);
-        void del_front();
+        void pop_front();
+        void pop_back();
 
+        void clear();
 
-
+        T& operator[](const int index);
 
     };
 
