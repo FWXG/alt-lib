@@ -19,7 +19,13 @@ add_library(list
     src/list.tpp
     headers/list.h
     )
+	
+add_library(point
+    src/main.cpp
+    src/point.tpp
+    headers/point.h
+    )
 
 add_executable(alt src/main.cpp)
-target_link_libraries(alt vector algorithm list)
+target_link_libraries(alt vector algorithm list point)
 
