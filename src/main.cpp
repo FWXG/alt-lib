@@ -1,13 +1,12 @@
-#include "..\headers\point.h"
+#include "..\headers\tupple.h"
 #include <iostream>
 #include <Windows.h>
 
 
 int main()
 {
-    alt::smart_pointer<int> s(new int(5));
-    alt::smart_pointer<int> b(s);
-    std::cout << *b << std::endl;
+    int arr[] = {4,5,7,6,54,654};
+    alt::tupple<int> t(arr, 6);
 
 
     system("pause");

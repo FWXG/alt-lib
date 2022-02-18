@@ -26,6 +26,12 @@ add_library(point
     headers/point.h
     )
 
+add_library(tupple
+    src/main.cpp
+    src/tupple.tpp
+    headers/tupple.h
+    )
+
 add_executable(alt src/main.cpp)
-target_link_libraries(alt vector algorithm list point)
+target_link_libraries(alt vector algorithm list point tupple)
 
