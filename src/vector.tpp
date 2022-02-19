@@ -76,9 +76,7 @@ void alt::vector<T>::insert(std::size_t pos, T elem)
         m_pointer[pos] = elem;
 
         for(int i = pos + 1; i < m_max_size; ++i)
-        {
             m_pointer[i] = m_tmp_arr[i - 1];
-        }
 
         delete[] m_tmp_arr;
 
@@ -90,7 +88,7 @@ void alt::vector<T>::insert(std::size_t pos, T elem)
 }
 
 template<typename T>
-void alt::vector<T>::erase(std::size_t pos, T elem)
+void alt::vector<T>::erase(std::size_t pos)
 {
     try
     {
@@ -99,6 +97,17 @@ void alt::vector<T>::erase(std::size_t pos, T elem)
 
         --m_max_size;
 
+        m_tmp_arr = new T[m_max_size];
+
+        for(std::size_t i = 0; i < pos; ++i)
+            m_tmp_arr[i] = m_pointer[i];
+
+        for(std::size_t i = pos; i < m_max_size; ++i)
+            m_tmp_arr[i] = m_pointer[i + 1];
+
+        delete[] m_pointer;
+        m_pointer = m_tmp_arr;
+        m_tmp_arr = nullptr;
 
     }
     catch(int a)

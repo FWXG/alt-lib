@@ -1,0 +1,35 @@
+#include <cstddef>
+#include <iostream>
+#pragma once
+
+namespace alt
+{
+	template<typename T>
+	class matrix
+	{
+	private:
+		
+		T** m_matrix;
+		std::size_t m_rows;
+		std::size_t m_column;
+
+	public:
+
+		matrix(std::size_t rows, std::size_t column);
+		~matrix();
+
+		//T& operator[](std::size_t index_first, std::size_t index_second) const; Simply, such an operator does not exist, so you can not overload it.
+
+		void print() const;
+		void init(std::size_t row, std::size_t col, T num);
+		const std::size_t& row_size() const;
+		const std::size_t& col_size() const;
+
+		void add_minus();
+		void mult_by(T val);
+		void transp();
+	
+	};
+
+	#include "../src/math.tpp" 
+}

@@ -1,4 +1,4 @@
-#include <cstdint>
+#include <cstddef>
 #pragma once
 
 namespace alt
@@ -17,6 +17,9 @@ namespace alt
         tupple();
         ~tupple();
 
+        T& operator[](const std::size_t index) const;
+
+        const std::size_t& length() const;
 
 
     };
