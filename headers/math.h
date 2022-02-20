@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <iostream>
+#include <utility>
 #pragma once
 
 namespace alt
@@ -28,8 +29,32 @@ namespace alt
 		void add_minus();
 		void mult_by(T val);
 		void transp();
+		alt::matrix<T> mult_matrix(T** val, std::size_t rows, std::size_t column);
 	
 	};
 
-	#include "../src/math.tpp" 
+	#include "../src/matrix.tpp" 
+}
+
+namespace alt
+{
+	template<typename T>
+	class math_vector
+	{
+	private:
+
+		T* m_vector;
+		std::size_t m_length;
+		std::size_t m_index;
+
+	public:
+
+		math_vector(std::size_t size);
+		~math_vector();
+
+		void add_elem(T val);
+
+	};
+
+	#include "../src/math_vector.tpp"
 }

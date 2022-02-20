@@ -66,22 +66,50 @@ void alt::matrix<T>::mult_by(T val)
 template<typename T>
 inline void alt::matrix<T>::transp()
 {
-
 	T** tmp = new T*[m_column];
 	for(std::size_t i = 0; i < m_column; ++i)
 		tmp[i] = new T[m_rows];
 
+	std::swap(m_rows, m_column);
+
+	for(std::size_t i = 0; i < m_rows; ++i)
+	for(std::size_t j = 0; j < m_column; ++j)
+		tmp[i][j] = m_matrix[j][i];
 	
 	for(std::size_t i = 0; i < m_rows; ++i)
 		delete[] m_matrix[i];
 
 	delete[] m_matrix;
 
-
 	m_matrix = tmp;
-	tmp = nullptr;
+	tmp      = nullptr;		
+  
+}
+
+template<typename T>
+alt::matrix<T> alt::matrix<T>::mult_matrix(T **val, std::size_t rows, std::size_t column)
+{
+	if(m_column == rows)
+	{
+		alt::matrix<T> result(m_rows, column);
+		
+		for(std::size_t i = 0; i < m_rows; ++i)
+		{
+			for(std::size_t j = 0; j < column; ++j)
+			{
+				result.init(i, j, 0);
+			}
+		}
+
+		return result;
+	}
+	else
+	{
+		std::cerr << "error matrix size" << std::ends;
+	}
 
 }
+
 
 template<typename T>
 inline alt::matrix<T>::~matrix()
@@ -91,4 +119,6 @@ inline alt::matrix<T>::~matrix()
 
 	delete[] m_matrix;
 }
+
+
 

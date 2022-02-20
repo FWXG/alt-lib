@@ -34,7 +34,8 @@ add_library(tupple
 
 add_library(math
     src/dummy.cpp
-    src/math.tpp
+    src/matrix.tpp
+    src/math_vector.tpp
     headers/math.h
     )
 
