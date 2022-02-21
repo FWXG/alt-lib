@@ -6,16 +6,18 @@ inline alt::matrix<T>::matrix(std::size_t rows, std::size_t column)
 	this->m_rows   = rows;
 	this->m_column = column;
 
-	m_matrix = new T*[m_rows];
-	for(std::size_t i = 0; i < m_rows; ++i)
-		m_matrix[i] = new T[m_column];
+	this->m_matrix = new T*[this->m_rows];
+	for(std::size_t i = 0; i < this->m_rows; ++i)
+		this->m_matrix[i] = new T[this->m_column];
+
+    std::cout << "constructor" << this->m_matrix << std::endl;
 
 }
 
 template<typename T>
 void alt::matrix<T>::init(std::size_t row, std::size_t col, T num)
 {
-	m_matrix[row][col] = num;
+	this->m_matrix[row][col] = num;
 }
 
 template<typename T>
@@ -50,7 +52,7 @@ void alt::matrix<T>::add_minus()
 	{
 		for (std::size_t j = 0; j < m_column; j++)
 			m_matrix[i][j] *= -1;
-	}	
+	}
 }
 
 template<typename T>
@@ -60,7 +62,7 @@ void alt::matrix<T>::mult_by(T val)
 	{
 		for (std::size_t j = 0; j < m_column; j++)
 			m_matrix[i][j] *= val;
-	}	
+	}
 }
 
 template<typename T>
@@ -75,49 +77,61 @@ inline void alt::matrix<T>::transp()
 	for(std::size_t i = 0; i < m_rows; ++i)
 	for(std::size_t j = 0; j < m_column; ++j)
 		tmp[i][j] = m_matrix[j][i];
-	
+
 	for(std::size_t i = 0; i < m_rows; ++i)
 		delete[] m_matrix[i];
 
 	delete[] m_matrix;
 
 	m_matrix = tmp;
-	tmp      = nullptr;		
-  
+	tmp      = nullptr;
+
 }
 
 template<typename T>
-alt::matrix<T> alt::matrix<T>::mult_matrix(T **val, std::size_t rows, std::size_t column)
+alt::matrix<T> alt::matrix<T>::mult_matrix(alt::matrix<T> first_matrix, alt::matrix<T> second_matrix)
 {
-	if(m_column == rows)
-	{
-		alt::matrix<T> result(m_rows, column);
-		
-		for(std::size_t i = 0; i < m_rows; ++i)
-		{
-			for(std::size_t j = 0; j < column; ++j)
-			{
-				result.init(i, j, 0);
-			}
-		}
+    alt::matrix<T> result(first_matrix.m_rows, second_matrix.m_column);
 
-		return result;
-	}
-	else
-	{
+    try
+    {
+        if(first_matrix.m_column == second_matrix.m_rows)
+        {
+            for(int i = 0; i < result.row_size(); ++i)
+            for(int j = 0; j < result.col_size(); ++j)
+                result.init(i, j, i + j);
+        }
+        else
+            throw -1;
+
+    }
+    catch(int a)
+    {
 		std::cerr << "error matrix size" << std::ends;
-	}
+    }
 
+    return result;
+
+}
+
+template<typename T>
+alt::matrix<T> alt::matrix<T>::operator=(const alt::matrix<T>& _matrix)
+{
+    this->m_rows = _matrix.m_rows;
+    this->m_column = _matrix.m_column;
+
+    return *this;
 }
 
 
 template<typename T>
 inline alt::matrix<T>::~matrix()
 {
-	for(std::size_t i = 0; i < m_rows; ++i)
-		delete[] m_matrix[i];
+    std::cout << "destructor" << this->m_matrix << std::endl;
+	for(std::size_t i = 0; i < this->m_rows; ++i)
+		delete[] this->m_matrix[i];
 
-	delete[] m_matrix;
+	delete[] this->m_matrix;
 }
 
 

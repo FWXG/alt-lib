@@ -1,6 +1,7 @@
 #include <cstddef>
 #include <iostream>
 #include <utility>
+#include <cmath>
 #pragma once
 
 namespace alt
@@ -9,7 +10,7 @@ namespace alt
 	class matrix
 	{
 	private:
-		
+
 		T** m_matrix;
 		std::size_t m_rows;
 		std::size_t m_column;
@@ -19,29 +20,35 @@ namespace alt
 		matrix(std::size_t rows, std::size_t column);
 		~matrix();
 
-		//T& operator[](std::size_t index_first, std::size_t index_second) const; Simply, such an operator does not exist, so you can not overload it.
+		alt::matrix<T> operator=(const alt::matrix<T>& _matrix);
+
 
 		void print() const;
 		void init(std::size_t row, std::size_t col, T num);
 		const std::size_t& row_size() const;
 		const std::size_t& col_size() const;
 
+		//Operation
 		void add_minus();
 		void mult_by(T val);
 		void transp();
-		alt::matrix<T> mult_matrix(T** val, std::size_t rows, std::size_t column);
-	
+		static alt::matrix<T> mult_matrix(alt::matrix<T> first_matrix, alt::matrix<T> second_matrix);
+
 	};
 
-	#include "../src/matrix.tpp" 
+	#include "../src/matrix.tpp"
 }
 
 namespace alt
 {
+
 	template<typename T>
 	class math_vector
 	{
 	private:
+
+        //All have same basis i and j
+        typedef alt::math_vector<T> _vector;
 
 		T* m_vector;
 		std::size_t m_length;
@@ -53,6 +60,19 @@ namespace alt
 		~math_vector();
 
 		void add_elem(T val);
+		void print() const;
+		const std::size_t& size() const;
+
+		//Operation
+		void negative();
+		void mult_by(T val);
+
+        const double vec_length() const;
+
+		static alt::math_vector<T> scalar_mult(_vector first_vector, _vector second_vector);
+
+
+
 
 	};
 
