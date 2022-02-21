@@ -92,14 +92,21 @@ template<typename T>
 alt::matrix<T> alt::matrix<T>::mult_matrix(alt::matrix<T> first_matrix, alt::matrix<T> second_matrix)
 {
     alt::matrix<T> result(first_matrix.m_rows, second_matrix.m_column);
+    T tmp = T();
 
     try
     {
         if(first_matrix.m_column == second_matrix.m_rows)
         {
-            for(int i = 0; i < result.row_size(); ++i)
-            for(int j = 0; j < result.col_size(); ++j)
-                result.init(i, j, i + j);
+            for(std::size_t i = 0; i < result.row_size(); ++i)
+            for(std::size_t j = 0; j < result.col_size(); ++j)
+            {
+                for(std::size_t k = 0; k < first_matrix.m_rows; ++k)
+                    tmp += first_matrix.m_matrix[i][k] * second_matrix.m_matrix[k][i];
+
+                result.init(i, j, tmp);
+            }
+
         }
         else
             throw -1;

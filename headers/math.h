@@ -69,10 +69,8 @@ namespace alt
 
         const double vec_length() const;
 
-		static alt::math_vector<T> scalar_mult(_vector first_vector, _vector second_vector);
-
-
-
+		static const double scalar_mult(const double& first_vector_len,
+                                  const double& second_vector_len,const double& cos_deg);
 
 	};
 

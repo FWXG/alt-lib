@@ -3,8 +3,9 @@
 template<typename T>
 inline alt::math_vector<T>::math_vector(std::size_t size)
 {
+    std::cout << "constructor" << this << std::endl;
 	this->m_length = size;
-	this->m_index = 0;
+	this->m_index  = 0;
 	m_vector       = new T[m_length];
 }
 
@@ -77,9 +78,10 @@ const double alt::math_vector<T>::vec_length() const
 }
 
 template<typename T>
-alt::math_vector<T> alt::math_vector<T>::scalar_mult(_vector first_vector, _vector second_vector)
+const double alt::math_vector<T>::scalar_mult(const double& first_vector_len,
+                                              const double& second_vector_len,const double& cos_deg)
 {
-    T result = first_vector.vec_length() * second_vector.vec_length() * cos(first_vector, second_vector);
+    double result = first_vector_len * second_vector_len * cos_deg;
     return result;
 }
 
@@ -87,5 +89,6 @@ alt::math_vector<T> alt::math_vector<T>::scalar_mult(_vector first_vector, _vect
 template<typename T>
 inline alt::math_vector<T>::~math_vector()
 {
+    std::cout << "destruct" << this << std::endl;
 	delete[] m_vector;
 }
