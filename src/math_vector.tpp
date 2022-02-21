@@ -85,6 +85,13 @@ const double alt::math_vector<T>::scalar_mult(const double& first_vector_len,
     return result;
 }
 
+template<typename T>
+const double alt::math_vector<T>::vector_mult(const double& first_vector_len,
+                                  const double& second_vector_len,const double& sin_deg)
+{
+    double result = first_vector_len * second_vector_len * sin_deg;
+    return result;
+}
 
 template<typename T>
 inline alt::math_vector<T>::~math_vector()

@@ -1,7 +1,7 @@
-vector+
+vector+++
 point +-
 list +-
 tupple -
-math matrix- vector-
+math matrix(multiplication) vector+++
 algorithm(quick sort...)
 

@@ -72,6 +72,9 @@ namespace alt
 		static const double scalar_mult(const double& first_vector_len,
                                   const double& second_vector_len,const double& cos_deg);
 
+        static const double vector_mult(const double& first_vector_len,
+                                  const double& second_vector_len,const double& sin_deg)
+
 	};
 
 	#include "../src/math_vector.tpp"
