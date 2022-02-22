@@ -26,10 +26,10 @@ add_library(point
     headers/point.h
     )
 
-add_library(tupple
+add_library(constants
     src/dummy.cpp
-    src/tupple.tpp
-    headers/tupple.h
+    src/constants.cpp
+    headers/constants.h
     )
 
 add_library(math
@@ -41,5 +41,5 @@ add_library(math
 
 
 add_executable(alt src/main.cpp)
-target_link_libraries(alt vector algorithm list point tupple)
+target_link_libraries(alt vector algorithm list point constants)
 

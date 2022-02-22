@@ -1,7 +1,8 @@
 vector+++
-point +-
-list +-
-tupple -
-math matrix(multiplication) vector+++
-algorithm(quick sort...)
+point +++
+list +++
+math_vector +++
+constants ---
+math matrix(multiplication) ---
+algorithm(quick sort...) ---
 
