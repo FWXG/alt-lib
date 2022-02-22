@@ -10,7 +10,7 @@ inline alt::matrix<T>::matrix(std::size_t rows, std::size_t column)
 	for(std::size_t i = 0; i < this->m_rows; ++i)
 		this->m_matrix[i] = new T[this->m_column];
 
-    std::cout << "constructor" << this->m_matrix << std::endl;
+    //std::cout << "constructor" << this->m_matrix << std::endl;
 
 }
 
@@ -88,38 +88,6 @@ inline void alt::matrix<T>::transp()
 
 }
 
-template<typename T>
-alt::matrix<T> alt::matrix<T>::mult_matrix(alt::matrix<T> first_matrix, alt::matrix<T> second_matrix)
-{
-    alt::matrix<T> result(first_matrix.m_rows, second_matrix.m_column);
-    T tmp = T();
-
-    try
-    {
-        if(first_matrix.m_column == second_matrix.m_rows)
-        {
-            for(std::size_t i = 0; i < result.row_size(); ++i)
-            for(std::size_t j = 0; j < result.col_size(); ++j)
-            {
-                for(std::size_t k = 0; k < first_matrix.m_rows; ++k)
-                    tmp += first_matrix.m_matrix[i][k] * second_matrix.m_matrix[k][i];
-
-                result.init(i, j, tmp);
-            }
-
-        }
-        else
-            throw -1;
-
-    }
-    catch(int a)
-    {
-		std::cerr << "error matrix size" << std::ends;
-    }
-
-    return result;
-
-}
 
 template<typename T>
 alt::matrix<T> alt::matrix<T>::operator=(const alt::matrix<T>& _matrix)
@@ -130,11 +98,29 @@ alt::matrix<T> alt::matrix<T>::operator=(const alt::matrix<T>& _matrix)
     return *this;
 }
 
+template<typename T>
+T alt::matrix<T>::det_gauss()
+{
+    double tmp = 0.0, D = 1;
+    if(this->m_rows == this->m_column){
+    for(std::size_t k = 0; k < this->m_rows - 1; ++k)
+    for(std::size_t i = k + 1; i < this->m_rows; ++i) {
+            tmp = -this->m_matrix[i][k] / this->m_matrix[k][k];
+            for(std::size_t j = 0; j < this->m_rows; ++j)
+                this->m_matrix[i][j] += this->m_matrix[k][j] * tmp;
+    }
+
+    for (std::size_t i = 0; i < this->m_rows; ++i)
+        D *= this->m_matrix[i][i];
+    }
+
+    return D;
+}
 
 template<typename T>
 inline alt::matrix<T>::~matrix()
 {
-    std::cout << "destructor" << this->m_matrix << std::endl;
+    //std::cout << "destructor" << this->m_matrix << std::endl;
 	for(std::size_t i = 0; i < this->m_rows; ++i)
 		delete[] this->m_matrix[i];
 

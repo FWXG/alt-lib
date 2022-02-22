@@ -32,7 +32,7 @@ namespace alt
 		void add_minus();
 		void mult_by(T val);
 		void transp();
-		static alt::matrix<T> mult_matrix(alt::matrix<T> first_matrix, alt::matrix<T> second_matrix);
+		T det_gauss();
 
 	};
 
@@ -73,7 +73,7 @@ namespace alt
                                   const double& second_vector_len,const double& cos_deg);
 
         static const double vector_mult(const double& first_vector_len,
-                                  const double& second_vector_len,const double& sin_deg)
+                                  const double& second_vector_len,const double& sin_deg);
 
 	};
 
