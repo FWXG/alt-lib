@@ -1,56 +1,67 @@
 #include "../headers/constants.h"
 
+std::string alt::constants::pi_num      = "";
+std::string alt::constants::eu_num      = "";
+std::string alt::constants::tau_num     = "";
+std::string alt::constants::gold_num    = "";
+std::string alt::constants::eu_mask_num = "";
+
 std::string alt::constants::get_pi()
 {
-    pi_file.open("..//docs//constants//pi.txt", std::ios::in);
+    std::fstream pi_file("..//docs//constants//pi.txt", std::ios::in);
     if(pi_file.is_open())
         while(std::getline(pi_file, pi_num));
     else
         std::cerr << "error";
 
+    pi_file.close();
     return pi_num;
 }
 
 std::string alt::constants::get_eu()
 {
-    this->eu_file.open("..//docs//constants//euler.txt", std::ios::in);
+    std::fstream eu_file("..//docs//constants//euler.txt", std::ios::in);
     if(eu_file.is_open())
         while(std::getline(eu_file, eu_num));
     else
         std::cerr << "error";
 
-    return this->eu_num;
+    eu_file.close();
+    return eu_num;
 }
 
 std::string alt::constants::get_tau()
 {
-    this->tau_file.open("..//docs//constants//tau.txt", std::ios::in);
+    std::fstream tau_file("..//docs//constants//tau.txt", std::ios::in);
     if(tau_file.is_open())
         while(std::getline(tau_file, tau_num));
     else
         std::cerr << "error";
 
-    return this->tau_num;
+    tau_file.close();
+    return tau_num;
 }
 
 std::string alt::constants::get_gold()
 {
-    this->gold_file.open("..//docs//constants//gold.txt", std::ios::in);
+    std::fstream gold_file("..//docs//constants//gold.txt", std::ios::in);
     if(gold_file.is_open())
         while(std::getline(gold_file, gold_num));
     else
         std::cerr << "error";
 
-    return this->gold_num;
+    gold_file.close();
+    return gold_num;
 }
 
 std::string alt::constants::get_eu_mask()
 {
-    this->eu_mask_file.open("..//docs//constants//euler-mask.txt", std::ios::in);
+    std::fstream eu_mask_file("..//docs//constants//euler-mask.txt", std::ios::in);
     if(eu_mask_file.is_open())
         while(std::getline(eu_mask_file, eu_mask_num));
     else
         std::cerr << "error";
 
-    return this->eu_mask_num;
+    eu_mask_file.close();
+    return eu_mask_num;
 }

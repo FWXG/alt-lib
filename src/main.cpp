@@ -7,9 +7,8 @@
 int main()
 {
     std::string str;
-    alt::constants c;
 
-    str = c.get_eu_mask();
+    str = alt::constants::get_pi();
 
     std::cout << str;
 

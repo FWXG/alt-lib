@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+
 #pragma once
 
 namespace alt
@@ -9,25 +10,21 @@ namespace alt
     {
     private:
 
-        std::fstream pi_file;
-        std::fstream eu_file;
-        std::fstream tau_file;
-        std::fstream gold_file;
-        std::fstream eu_mask_file;
+        static std::string pi_num;
+        static std::string eu_num;
+        static std::string tau_num;
+        static std::string gold_num;
+        static std::string eu_mask_num;
 
-        std::string pi_num;
-        std::string eu_num;
-        std::string tau_num;
-        std::string gold_num;
-        std::string eu_mask_num;
+        constants() = delete;
 
     public:
 
-        std::string get_pi();
-        std::string get_eu();
-        std::string get_tau();
-        std::string get_gold();
-        std::string get_eu_mask();
+        static std::string get_pi();
+        static std::string get_eu();
+        static std::string get_tau();
+        static std::string get_gold();
+        static std::string get_eu_mask();
 
     };
 
